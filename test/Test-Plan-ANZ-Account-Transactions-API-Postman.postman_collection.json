@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "d5764a03-3ec2-407b-a241-20327bc4353f",
+		"name": "ANZ-Account-Transactions-API-Test-Plan-Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllAccounts()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts"
+					]
+				},
+				"description": "getAllAccounts()"
+			},
+			"response": []
+		},
+		{
+			"name": "getAccountByAccountNumber()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/search/account?accountNumber=9467563426",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"search",
+						"account"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "9467563426"
+						}
+					]
+				},
+				"description": "getAccountByAccountNumber()"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllAccountsByUserId()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/search/allaccounts?userId=AU2344",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"search",
+						"allaccounts"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "AU2344"
+						}
+					]
+				},
+				"description": "getAllAccountsByUserId()"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllTransactions()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions"
+					]
+				},
+				"description": "getAllTransactions()"
+			},
+			"response": []
+		},
+		{
+			"name": "getTransactionByTransactionId()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/transactions/search/transaction?transactionId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions",
+						"search",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "transactionId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "getTransactionByTransactionId()"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllTransactionByAccountNumber()",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/transactions/search/alltransactions?accountNumber=9467563426",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transactions",
+						"search",
+						"alltransactions"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "9467563426"
+						}
+					]
+				},
+				"description": "getAllTransactionByAccountNumber()"
+			},
+			"response": []
+		},
+		{
+			"name": "Error Scenario - Not Found ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accountss",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accountss"
+					]
+				},
+				"description": "Wrong URI"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
