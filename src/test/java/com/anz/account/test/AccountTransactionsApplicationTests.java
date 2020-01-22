@@ -14,6 +14,7 @@ import com.anz.account.model.Transaction;
 import com.anz.account.repository.AccountRepository;
 import com.anz.account.repository.TransactionRepository;
 
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -38,9 +39,9 @@ import static org.mockito.Mockito.when;
  * @author Kumar, Anurag
  *
  */
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
-@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
 public class AccountTransactionsApplicationTests {
 
 	private Logger logger = LoggerFactory.getLogger(AccountTransactionsApplicationTests.class);
