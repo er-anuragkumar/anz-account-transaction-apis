@@ -93,4 +93,10 @@ public class Account {
 		return transactions;
 	}
 
+	@Override
+	public String toString() {
+		return "Account [accountNumber=" + accountNumber + ", accountName=" + accountName + ", accountType=" + accountType + ", balanceDate=" + balanceDate
+				+ ", currency=" + currency + ", balance=" + balance + ", userId=" + userId + ", transactions=" + transactions + "]";
+	}
+
 }

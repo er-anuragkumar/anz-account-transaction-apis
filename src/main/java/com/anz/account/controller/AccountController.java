@@ -46,7 +46,7 @@ public class AccountController {
 	 * @return Account Object JSON
 	 */
 	@GetMapping(path = "/accounts/search/account", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Account> getAccountByAccountNumber(@RequestParam("accountNumber") Long accountNumber) {
+	public ResponseEntity<Account> getAccountByAccountNumber(@RequestParam("accountNumber") long accountNumber) {
 
 		logger.info("START: getAccountByAccountNumber, accountNumber: " + accountNumber);
 		Account account = repository.getAccountByAccountNumber(accountNumber);

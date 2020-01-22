@@ -106,4 +106,11 @@ public class Transaction extends ResourceSupport {
 		this.account = account;
 	}
 
+	@Override
+	public String toString() {
+		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", currency=" + currency + ", debitAmount="
+				+ debitAmount + ", creditAmount=" + creditAmount + ", type=" + type + ", description=" + description + ", accountName=" + accountName
+				+ ", account=" + account + "]";
+	}
+
 }
