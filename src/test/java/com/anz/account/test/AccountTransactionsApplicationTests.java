@@ -4,9 +4,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import com.anz.account.controller.AccountController;
 import com.anz.account.controller.TransactionController;
 import com.anz.account.model.Account;
@@ -15,8 +12,6 @@ import com.anz.account.repository.AccountRepository;
 import com.anz.account.repository.TransactionRepository;
 
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
