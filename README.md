@@ -1,13 +1,18 @@
 # anz-account-transaction-apis
 This is a Demo Application built for getting Account & Transaction Details using Spring Boot & Docker
 
-[1] Components & Scope:
+[1] Components & Scopes:
 -----------------------
 [1.1] REST API's built using Spring Boot & H2 Database
+
 [1.2] Docker Containerization with Dockerfile and docker-compose.yml
+
 [1.3] Maven for Build
+
 [1.4] Swagger 2.0 for API Documenation & Testing
+
 [1.5] Mockito & JUnit for automated testing
+
 [1.6] Exception & Error Handling
 
 
