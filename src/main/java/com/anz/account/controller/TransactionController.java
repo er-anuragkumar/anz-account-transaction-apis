@@ -2,6 +2,9 @@ package com.anz.account.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +67,7 @@ public class TransactionController {
 	 * @return Transaction Object JSON
 	 */
 	@GetMapping(path = "/transactions/search/transaction", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Transaction> getTransactionByTransactionId(@RequestParam("transactionId") Long transactionId) throws TransactionNotFoundException, Exception {
+	public ResponseEntity<Transaction> getTransactionByTransactionId(@Valid @RequestParam("transactionId") Long transactionId) throws TransactionNotFoundException, Exception {
 
 		logger.info("START: getTransactionByTransactionId, transactionId: " + transactionId);
 		Transaction transaction = new Transaction();
@@ -94,7 +97,7 @@ public class TransactionController {
 	 * @return Transaction Object List JSON.
 	 */
 	@GetMapping(path = "/transactions/search/alltransactions", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Transaction>> getAllTransactionByAccountNumber(@RequestParam("accountNumber") Long accountNumber) throws TransactionNotFoundException, Exception {
+	public ResponseEntity<List<Transaction>> getAllTransactionByAccountNumber(@Valid @RequestParam("accountNumber") Long accountNumber) throws TransactionNotFoundException, Exception {
 
 		logger.info("START: getAllTransactionByAccountNumber, accountNumber: " + accountNumber);
 		Account account = new Account();

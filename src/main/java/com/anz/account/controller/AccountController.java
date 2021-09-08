@@ -2,6 +2,9 @@ package com.anz.account.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +66,7 @@ public class AccountController {
 	 * @return Account Object JSON
 	 */
 	@GetMapping(path = "/accounts/search/account", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Account> getAccountByAccountNumber(@RequestParam("accountNumber") long accountNumber) throws AccountNotFoundException, Exception {
+	public ResponseEntity<Account> getAccountByAccountNumber(@Valid @RequestParam("accountNumber") long accountNumber) throws AccountNotFoundException, Exception {
 
 		logger.info("START: getAccountByAccountNumber, accountNumber: " + accountNumber);
 		Account account = new Account();
@@ -90,7 +93,7 @@ public class AccountController {
 	 * @return Account Objects List JSON.
 	 */
 	@GetMapping(path = "/accounts/search/allaccounts", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Account>> getAllAccountsByUserId(@RequestParam("userId") String userId) throws AccountNotFoundException, Exception {
+	public ResponseEntity<List<Account>> getAllAccountsByUserId(@Valid @RequestParam("userId") String userId) throws AccountNotFoundException, Exception {
 		logger.info("START: getAllAccountsByUserId, userId: " + userId);
 		List<Account> accounts = new ArrayList<Account>();
 		try {
