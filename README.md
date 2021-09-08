@@ -1,24 +1,34 @@
 # anz-account-transaction-apis
 This is a Demo Application built for getting Account & Transaction Details using Spring Boot & Docker
 
-[1] Prequisites for running the Application:
+[1] Components & Scope:
+-----------------------
+[1.1] REST API's built using Spring Boot & H2 Database
+[1.2] Docker Containerization with Dockerfile and docker-compose.yml
+[1.3] Maven for Build
+[1.4] Swagger 2.0 for API Documenation & Testing
+[1.5] Mockito & JUnit for automated testing
+[1.6] Exception & Error Handling
+
+
+[2] Prequisites for running the Application:
 -----------------------------------------------------------
 ```
 JDK 1.8
 Maven
 Docker
 ```
-[2] Running the Application:
+[3] Running the Application:
 -----------------------------
-[2.1] Clone and Open the project
+[3.1] Clone and Open the project
 ```
 git clone https://github.com/er-anuragkumar/anz-account-transaction-apis.git
 ```
-[2.2] Build & Run the Application in Docker Container
+[3.2] Build & Run the Application in Docker Container
 ```
 docker-compose up --build
 ```
-[2.3] Build & Run the Application without Docker
+[3.3] Build & Run the Application without Docker
 ```
 mvn clean package
 
@@ -26,20 +36,29 @@ Go to target folder and run the Spring Boot Application
 
 java -jar anz-account-transactions-0.0.1-SNAPSHOT.jar
 ```
-[3] Swagger Link:
+[4] Swagger Link:
 ---------------
-[3.1] Account API's:
+[4.1] Account API's:
 ```
 http://localhost:8080/swagger-ui.html#/account-controller
 ```
-[3.2] Transaction API's:
+[4.2] Transaction API's:
 ```
 http://localhost:8080/swagger-ui.html#/transaction-controller
 ```
-[4] REST API's:
+[5] H2 Database Console:
+------------------------
+```
+http://localhost:8080/h2
+JDBC URL: jdbc:h2:mem:anzaccountdata
+User Name: admin
+Password: admin
+```
+
+[6] REST API's:
 -------------
 
-[4.1] getAllAccounts()
+[6.1] getAllAccounts()
 ```
 Full URL: http://localhost:8080/accounts
 Method:   GET
@@ -77,7 +96,7 @@ Sample Response JSON:
     }
 ]
 ```
-[4.2] getAccountByAccountNumber()
+[6.2] getAccountByAccountNumber()
 ```
 Full URL: http://localhost:8080/accounts/search/account?accountNumber={accountNumber}
 Sample URL: http://localhost:8080/accounts/search/account?accountNumber=136056165
@@ -96,7 +115,7 @@ Sample Response JSON:
     "userId": "AU2344"
 }
 ```
-[4.3] getAllAccountsByUserId()
+[6.3] getAllAccountsByUserId()
 ```
 Full URL: http://localhost:8080/accounts/search/allaccounts?userId={userId}
 Sample URL: http://localhost:8080/accounts/search/allaccounts?userId=AU2344
@@ -126,7 +145,7 @@ Sample Response JSON:
     }
 ]
 ```
-[4.4] getAllTransactions()
+[6.4] getAllTransactions()
 ```
 Full URL: http://localhost:8080/transactions
 Sample URL: http://localhost:8080/transactions
@@ -160,7 +179,7 @@ Sample Response JSON:
     }
 ]
 ```
-[4.5] getTransactionByTransactionId()
+[6.5] getTransactionByTransactionId()
 ```
 Full URL: http://localhost:8080/transactions/search/transaction?transactionId={transactionId}
 Sample URL: http://localhost:8080/transactions/search/transaction?transactionId=2
@@ -179,7 +198,7 @@ Sample Response JSON:
     "accountName": "Savings Account"
 }
 ```
-[4.6] getAllTransactionByAccountNumber()
+[6.6] getAllTransactionByAccountNumber()
 ```
 Full URL: http://localhost:8080/transactions/search/alltransactions?accountNumber={accountNumber}
 Sample URL: http://localhost:8080/transactions/search/alltransactions?accountNumber=136056165
