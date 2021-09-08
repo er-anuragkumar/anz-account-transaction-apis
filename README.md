@@ -9,14 +9,14 @@ This is a Demo Application built for getting Account & Transaction Details using
 
 [1.3] Maven for Build
 
-[1.4] Swagger 2.0 for API Documenation & Testing
+[1.4] Swagger 2.0 for API Documentation & Testing
 
 [1.5] Mockito & JUnit for automated testing
 
 [1.6] Exception & Error Handling
 
 
-[2] Prequisites for running the Application:
+[2] Perquisites for running the Application:
 -----------------------------------------------------------
 ```
 JDK 1.8
