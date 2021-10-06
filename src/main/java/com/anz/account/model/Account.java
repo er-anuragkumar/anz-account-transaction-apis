@@ -9,15 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * @author Kumar, Anurag
  *
  */
-@Entity
+
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Entity
 public class Account {
 	@Id
 	private Long accountNumber;

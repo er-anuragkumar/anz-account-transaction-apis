@@ -1,3 +1,5 @@
+insert into users (user, pwd) values('anzadmin', '$2a$12$Gc.mYi5t7vAcaA4GnTryWubu2O6XJGnmGbvOhe.vy6GaKs9/3fNNG');
+
 insert into Account(account_number,account_name,account_type,balance,balance_date,currency,user_id) values(585309209,'SGSaving726','Savings',84327.51,to_date('08/11/2018','DD/MM/YYYY'),'SGD','AU2344');
 insert into Account(account_number,account_name,account_type,balance,balance_date,currency,user_id) values(791066619,'AUSaving933','Savings',88005.93,to_date('08/11/2018','DD/MM/YYYY'),'AUD','AU2367');
 insert into Account(account_number,account_name,account_type,balance,balance_date,currency,user_id) values(321143048,'SGCurrent855','Current',38010.62,to_date('08/11/2018','DD/MM/YYYY'),'SGD','AU2344');

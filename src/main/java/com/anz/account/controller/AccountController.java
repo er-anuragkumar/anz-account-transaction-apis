@@ -8,10 +8,16 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,11 +43,14 @@ public class AccountController {
 	 * @return Account Objects List JSON.
 	 */
 	@GetMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Account>> getAllAccounts() throws AccountNotFoundException, Exception {
+	public ResponseEntity<List<Account>> getAllAccounts(@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize,
+			@RequestParam(defaultValue = "accountNumber") String sortBy) throws AccountNotFoundException, Exception {
 		logger.info("START: getAllAccounts");
 		List<Account> accountsList = new ArrayList<Account>();
+		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 		try {
-			accountsList = repository.findAll();
+			Page<Account> pagedResult = repository.findAll(paging);
+			accountsList = pagedResult.getContent();
 		} catch (Exception ex) {
 			logger.error("Exception Occurred while Fetching All Accounts, " + ex.getMessage());
 			throw new Exception("Exception Occurred while Fetching All Accounts, " + ex.getMessage());
@@ -61,15 +70,15 @@ public class AccountController {
 	/**
 	 * This service retrieves account details with Account Number.
 	 * 
-	 * @param userId
-	 * @param accountNumber
+	 * @param account
+	 * 
 	 * @return Account Object JSON
 	 */
-	@GetMapping(path = "/accounts/search/account", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Account> getAccountByAccountNumber(@Valid @RequestParam("accountNumber") long accountNumber) throws AccountNotFoundException, Exception {
-
+	@PostMapping(path = "/accounts/search/account", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Account> getAccountByAccountNumber(@Valid @RequestBody Account account) throws AccountNotFoundException, Exception {
+		long accountNumber = account.getAccountNumber();
 		logger.info("START: getAccountByAccountNumber, accountNumber: " + accountNumber);
-		Account account = new Account();
+
 		try {
 			account = repository.getAccountByAccountNumber(accountNumber);
 		} catch (Exception ex) {
@@ -92,12 +101,15 @@ public class AccountController {
 	 * @param userId
 	 * @return Account Objects List JSON.
 	 */
-	@GetMapping(path = "/accounts/search/allaccounts", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Account>> getAllAccountsByUserId(@Valid @RequestParam("userId") String userId) throws AccountNotFoundException, Exception {
+	@PostMapping(path = "/accounts/search/allaccounts", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Account>> getAllAccountsByUserId(@Valid @RequestBody Account account, @RequestParam(defaultValue = "0") Integer pageNo,
+			@RequestParam(defaultValue = "10") Integer pageSize, @RequestParam(defaultValue = "accountNumber") String sortBy) throws AccountNotFoundException, Exception {
+		String userId = account.getUserId();
 		logger.info("START: getAllAccountsByUserId, userId: " + userId);
 		List<Account> accounts = new ArrayList<Account>();
+		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 		try {
-			accounts = repository.getAllAccountsByUserId(userId);
+			accounts = repository.getAllAccountsByUserId(userId, paging);
 
 		} catch (Exception ex) {
 			logger.error("Exception Occurred while Fetching account details with userId: " + userId + ", " + ex.getMessage());

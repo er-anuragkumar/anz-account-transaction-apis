@@ -11,7 +11,7 @@
 	<artifactId>anz-account-transactions</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>account-transactions</name>
-	<description>Demo Application to get the account details and transaction details</description>
+	<description>A service to get the account details and transaction details</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -23,6 +23,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -71,6 +75,11 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 	</dependencies>
 	<build>
