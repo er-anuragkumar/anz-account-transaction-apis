@@ -5,7 +5,7 @@ This is a Demo Application built for getting Account & Transaction Details using
 -----------------------
 [1.1] REST API's built using Spring Boot & H2 Database
 
-[1.2] JWT Token-based API authentication & User Validation against the local database. 
+[1.2] JWT Token-based API authentication for all endpoints & User Validation against the local database for the login API.
 
 [1.3] Pagination & Sorting support in the API's
 
