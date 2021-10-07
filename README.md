@@ -5,7 +5,7 @@ This is a Demo Application built for getting Account & Transaction Details using
 -----------------------
 [1.1] REST API's built using Spring Boot & H2 Database
 
-[1.2] JWT Token-based API authentication & User Validaton against local database. 
+[1.2] JWT Token-based API authentication & User Validation against the local database. 
 
 [1.3] Pagination & Sorting support in the API's
 
@@ -47,17 +47,25 @@ Go to target folder and run the Spring Boot Application
 
 java -jar anz-account-transactions-0.0.1-SNAPSHOT.jar
 ```
-[4] Swagger Link:
+[4] User for Login API:
 ---------------
-[4.1] Account API's:
+```
+Username: anzadmin
+Password: Ax296783@tR!
+```
+Currently only this user will be created in database during Application startup(password is encrypted in database).
+
+[5] Swagger Link:
+---------------
+[5.1] Account API's:
 ```
 http://localhost:8080/swagger-ui.html#/account-controller
 ```
-[4.2] Transaction API's:
+[5.2] Transaction API's:
 ```
 http://localhost:8080/swagger-ui.html#/transaction-controller
 ```
-[5] H2 Database Console:
+[6] H2 Database Console:
 ------------------------
 ```
 http://localhost:8080/h2
@@ -66,9 +74,9 @@ User Name: admin
 Password: admin
 ```
 
-[6] REST API's:
+[7] REST API's:
 -------------
-[6.1] login()
+[7.1] login()
 ```
 Full URL: http://localhost:8080/auth
 Method:   POST
@@ -89,7 +97,7 @@ Sample Response JSON:
     "expiration": "600"
 }
 ```
-[6.2] getAllAccounts()
+[7.2] getAllAccounts()
 ```
 Full URL: http://localhost:8080/accounts?pageSize=5&pageNo=0&sortBy=accountNumber
 Method:   GET
@@ -128,7 +136,7 @@ Sample Response JSON:
     }
 ]
 ```
-[6.3] getAccountByAccountNumber()
+[7.3] getAccountByAccountNumber()
 ```
 Full URL: http://localhost:8080/accounts/search/account
 Method:   POST
@@ -152,7 +160,7 @@ Sample Response JSON:
     "userId": "AU2344"
 }
 ```
-[6.4] getAllAccountsByUserId()
+[7.4] getAllAccountsByUserId()
 ```
 Full URL: http://localhost:8080/accounts/search/allaccounts?pageSize=5&pageNo=0&sortBy=accountNumber
 Method:   POST
@@ -187,7 +195,7 @@ Sample Response JSON:
     }
 ]
 ```
-[6.5] getAllTransactions()
+[7.5] getAllTransactions()
 ```
 Full URL: http://localhost:8080/transactions?pageSize=5&pageNo=0&sortBy=transactionId
 Method:   GET
@@ -221,7 +229,7 @@ Sample Response JSON:
     }
 ]
 ```
-[6.6] getTransactionByTransactionId()
+[7.6] getTransactionByTransactionId()
 ```
 Full URL: http://localhost:8080/transactions/search/transaction
 Method:   POST
@@ -245,7 +253,7 @@ Sample Response JSON:
     "accountName": "Savings Account"
 }
 ```
-[6.7] getAllTransactionByAccountNumber()
+[7.7] getAllTransactionByAccountNumber()
 ```
 Full URL: http://localhost:8080/transactions/search/alltransactions?pageSize=5&pageNo=0&sortBy=transactionId
 Method:   POST
