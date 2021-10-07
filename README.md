@@ -5,15 +5,21 @@ This is a Demo Application built for getting Account & Transaction Details using
 -----------------------
 [1.1] REST API's built using Spring Boot & H2 Database
 
-[1.2] Docker Containerization with Dockerfile and docker-compose.yml
+[1.2] JWT Token-based API authentication & User Validaton against local database. 
 
-[1.3] Maven for Build
+[1.3] Pagination & Sorting support in the API's
 
-[1.4] Swagger 2.0 for API Documentation & Testing
+[1.4] Docker Containerization with Dockerfile and docker-compose.yml
 
-[1.5] Mockito & JUnit for automated testing
+[1.5] Maven for Build
 
-[1.6] Exception & Error Handling
+[1.6] Swagger 2.0 for API Documentation
+
+[1.7] Test coverage with @SpringBootTest, @WebMvcTest & @DataJpaTest
+
+[1.8] Mockito & JUnit for automated testing
+
+[1.9] Exception & Error Handling
 
 
 [2] Perquisites for running the Application:
@@ -62,13 +68,34 @@ Password: admin
 
 [6] REST API's:
 -------------
-
-[6.1] getAllAccounts()
+[6.1] login()
 ```
-Full URL: http://localhost:8080/accounts
+Full URL: http://localhost:8080/auth
+Method:   POST
+Sends:    JSON
+Receives: JSON
+
+Sample Request JSON:
+{
+    "user": "anzadmin",
+    "pwd": "Ax296783@tR!"
+}
+
+Sample Response JSON:
+{
+    "user": "anzadmin",
+    "pwd": "",
+    "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTYzNTU1LCJleHAiOjE2MzM1NjQxNTV9.TUnrUcWTmbNBanhKRuCz3djFspZqrqvTzx0Wr9-vysJ1wtH6KjgOCfrQq4BbXoMGf3-_XLFOMwEECtNNrJNuEw",
+    "expiration": "600"
+}
+```
+[6.2] getAllAccounts()
+```
+Full URL: http://localhost:8080/accounts?pageSize=5&pageNo=0&sortBy=accountNumber
 Method:   GET
 Sends:    N/A
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
 
 Sample Response JSON:
 [
@@ -101,13 +128,18 @@ Sample Response JSON:
     }
 ]
 ```
-[6.2] getAccountByAccountNumber()
+[6.3] getAccountByAccountNumber()
 ```
-Full URL: http://localhost:8080/accounts/search/account?accountNumber={accountNumber}
-Sample URL: http://localhost:8080/accounts/search/account?accountNumber=136056165
-Method:   GET
-Sends:    N/A
+Full URL: http://localhost:8080/accounts/search/account
+Method:   POST
+Sends:    JSON
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
+
+Sample Request JSON:
+{
+    "accountNumber": 136056165
+}
 
 Sample Response JSON:
 {
@@ -120,13 +152,18 @@ Sample Response JSON:
     "userId": "AU2344"
 }
 ```
-[6.3] getAllAccountsByUserId()
+[6.4] getAllAccountsByUserId()
 ```
-Full URL: http://localhost:8080/accounts/search/allaccounts?userId={userId}
-Sample URL: http://localhost:8080/accounts/search/allaccounts?userId=AU2344
-Method:   GET
-Sends:    N/A
+Full URL: http://localhost:8080/accounts/search/allaccounts?pageSize=5&pageNo=0&sortBy=accountNumber
+Method:   POST
+Sends:    JSON
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
+
+Sample Request JSON:
+{
+    "userId": "AU2344"
+}
 
 Sample Response JSON:
 [
@@ -150,13 +187,13 @@ Sample Response JSON:
     }
 ]
 ```
-[6.4] getAllTransactions()
+[6.5] getAllTransactions()
 ```
-Full URL: http://localhost:8080/transactions
-Sample URL: http://localhost:8080/transactions
+Full URL: http://localhost:8080/transactions?pageSize=5&pageNo=0&sortBy=transactionId
 Method:   GET
 Sends:    N/A
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
 
 Sample Response JSON:
 [
@@ -184,13 +221,18 @@ Sample Response JSON:
     }
 ]
 ```
-[6.5] getTransactionByTransactionId()
+[6.6] getTransactionByTransactionId()
 ```
-Full URL: http://localhost:8080/transactions/search/transaction?transactionId={transactionId}
-Sample URL: http://localhost:8080/transactions/search/transaction?transactionId=2
-Method:   GET
-Sends:    N/A
+Full URL: http://localhost:8080/transactions/search/transaction
+Method:   POST
+Sends:    JSON
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
+
+Sample Request JSON:
+{
+    "transactionId": 2
+}
 
 Sample Response JSON:
 {
@@ -203,13 +245,18 @@ Sample Response JSON:
     "accountName": "Savings Account"
 }
 ```
-[6.6] getAllTransactionByAccountNumber()
+[6.7] getAllTransactionByAccountNumber()
 ```
-Full URL: http://localhost:8080/transactions/search/alltransactions?accountNumber={accountNumber}
-Sample URL: http://localhost:8080/transactions/search/alltransactions?accountNumber=136056165
-Method:   GET
-Sends:    N/A
+Full URL: http://localhost:8080/transactions/search/alltransactions?pageSize=5&pageNo=0&sortBy=transactionId
+Method:   POST
+Sends:    JSON
 Receives: JSON
+Headers: Authorization : Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiYW56YWRtaW4iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjMzNTY0NjA2LCJleHAiOjE2MzM1NjUyMDZ9.5DT2kbyfDWqbpCCYj94n2kmTnzkhJG-wSVlUszY1BkQl8AoaPvZmrjhuuUSbtq1at1iXzXdlOzoS1ragCBa2Fw
+
+Sample Request JSON:
+{
+    "accountNumber": 136056165
+}
 
 Sample Response JSON:
 [
